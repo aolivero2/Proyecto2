@@ -54,10 +54,22 @@ public class Principal extends javax.swing.JFrame {
 
         jLabel2.setText("Numero Uno:");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, -1, -1));
+
+        txtNumeroUno.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNumeroUnoKeyTyped(evt);
+            }
+        });
         jPanel1.add(txtNumeroUno, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, 50, -1));
 
         jLabel3.setText("Numero Dos:");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 90, -1, 20));
+
+        txtNumeroDos.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNumeroDosKeyTyped(evt);
+            }
+        });
         jPanel1.add(txtNumeroDos, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 90, 50, -1));
 
         jLabel4.setText("Resultado:");
@@ -119,16 +131,20 @@ public class Principal extends javax.swing.JFrame {
            JOptionPane.showMessageDialog(this,"Digite el numero dos", "Error", JOptionPane.ERROR_MESSAGE);
             txtNumeroDos.requestFocusInWindow();
        }else{
+          
+       
            
-       }
-           
-       
-       
-       
-       
+    
        n1=Double.parseDouble(txtNumeroUno.getText());
        n2=Double.parseDouble(txtNumeroDos.getText());
        op= cmbOperacion2.getSelectedIndex();
+       
+       if(op==3 && n2 ==0 ){
+        JOptionPane.showMessageDialog(this,"No digite cero", "Error", JOptionPane.ERROR_MESSAGE);
+        txtNumeroDos.requestFocusInWindow();
+        txtNumeroDos.selectAll();
+       } else {
+           
        
        switch (op){
            case 0:
@@ -142,13 +158,15 @@ public class Principal extends javax.swing.JFrame {
                resultado= n1*n2;
                break;
            case 3:
+   
                resultado=n1/n2;
        }
        
        res=String.valueOf(resultado);
        
        txtResultado.setText(res);
-        
+       }
+       }
     }//GEN-LAST:event_cmbOperacionActionPerformed
 
     private void cmdBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdBorrarActionPerformed
@@ -164,6 +182,28 @@ public class Principal extends javax.swing.JFrame {
     private void txtResultadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtResultadoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtResultadoActionPerformed
+
+    private void txtNumeroUnoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNumeroUnoKeyTyped
+        char c=evt.getKeyChar(); 
+             
+         
+          if(!Character.isDigit(c)) { 
+              getToolkit().beep(); 
+               
+              evt.consume();    
+          } 
+    }//GEN-LAST:event_txtNumeroUnoKeyTyped
+
+    private void txtNumeroDosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNumeroDosKeyTyped
+        char c=evt.getKeyChar(); 
+             
+         
+          if(!Character.isDigit(c)) { 
+              getToolkit().beep(); 
+               
+              evt.consume();    
+          } 
+    }//GEN-LAST:event_txtNumeroDosKeyTyped
 
     /**
      * @param args the command line arguments
