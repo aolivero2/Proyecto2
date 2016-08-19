@@ -58,9 +58,16 @@ public class Principal extends javax.swing.JFrame {
 
         jLabel4.setText("Resultado:");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 140, -1, -1));
+
+        txtResultado.setEditable(false);
         jPanel1.add(txtResultado, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 130, 60, 30));
 
         cmdCalcular.setText("Calcular");
+        cmdCalcular.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdCalcularActionPerformed(evt);
+            }
+        });
         jPanel1.add(cmdCalcular, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 210, -1, -1));
 
         cmdBorrar.setText("Borrar");
@@ -79,6 +86,24 @@ public class Principal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void cmdCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdCalcularActionPerformed
+       String num1, num2, res;
+       int n1, n2, suma;
+       
+       num1= txtNumeroUno.getText();
+       num2= txtNumeroDos.getText();
+       
+       n1=Integer.parseInt(num1);
+       n2=Integer.parseInt(num2);
+      
+       
+       suma= n1+n2;
+       res=String.valueOf(suma);
+       
+       txtResultado.setText(res);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmdCalcularActionPerformed
 
     /**
      * @param args the command line arguments
