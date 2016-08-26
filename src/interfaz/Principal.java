@@ -54,22 +54,10 @@ public class Principal extends javax.swing.JFrame {
 
         jLabel2.setText("Numero Uno:");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, -1, -1));
-
-        txtNumeroUno.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtNumeroUnoKeyTyped(evt);
-            }
-        });
         jPanel1.add(txtNumeroUno, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, 50, -1));
 
         jLabel3.setText("Numero Dos:");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 90, -1, 20));
-
-        txtNumeroDos.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtNumeroDosKeyTyped(evt);
-            }
-        });
         jPanel1.add(txtNumeroDos, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 90, 50, -1));
 
         jLabel4.setText("Resultado:");
@@ -109,32 +97,54 @@ public class Principal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 30, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 368, Short.MAX_VALUE)
         );
 
-        pack();
+        setSize(new java.awt.Dimension(476, 407));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void cmbOperacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbOperacionActionPerformed
        String res;
        double n1, n2, resultado=0;
-       int op;
+       int op,sw=1;
        
        if (txtNumeroUno.getText().trim().isEmpty()){
            JOptionPane.showMessageDialog(this,"Digite el numero uno", "Error", JOptionPane.ERROR_MESSAGE);
            txtNumeroUno.requestFocusInWindow();
+           sw=0;
        }else if (txtNumeroDos.getText().trim().isEmpty()){
            JOptionPane.showMessageDialog(this,"Digite el numero dos", "Error", JOptionPane.ERROR_MESSAGE);
             txtNumeroDos.requestFocusInWindow();
+            sw=0;
        }else{
+           try{
+           Double.parseDouble(txtNumeroUno.getText());    
+           }catch (NumberFormatException e){
+            JOptionPane.showMessageDialog(this,"El primer numero debe ser un numero valido","Error",JOptionPane.ERROR_MESSAGE);
+            txtNumeroUno.requestFocusInWindow();
+            txtNumeroUno.selectAll();
+           sw=0;
+           }
+           try{
+          Double.parseDouble(txtNumeroDos.getText());    
+           }catch (NumberFormatException e){
+            JOptionPane.showMessageDialog(this,"El primer numero debe ser un numero valido","Error",JOptionPane.ERROR_MESSAGE);
+            txtNumeroDos.requestFocusInWindow();
+            txtNumeroDos.selectAll();
+           sw=0;
+           }
+       }
+
+       if(sw==1){
           
-       
-           
-    
+   
        n1=Double.parseDouble(txtNumeroUno.getText());
        n2=Double.parseDouble(txtNumeroDos.getText());
        op= cmbOperacion2.getSelectedIndex();
@@ -182,28 +192,6 @@ public class Principal extends javax.swing.JFrame {
     private void txtResultadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtResultadoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtResultadoActionPerformed
-
-    private void txtNumeroUnoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNumeroUnoKeyTyped
-        char c=evt.getKeyChar(); 
-             
-         
-          if(!Character.isDigit(c)) { 
-              getToolkit().beep(); 
-               
-              evt.consume();    
-          } 
-    }//GEN-LAST:event_txtNumeroUnoKeyTyped
-
-    private void txtNumeroDosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNumeroDosKeyTyped
-        char c=evt.getKeyChar(); 
-             
-         
-          if(!Character.isDigit(c)) { 
-              getToolkit().beep(); 
-               
-              evt.consume();    
-          } 
-    }//GEN-LAST:event_txtNumeroDosKeyTyped
 
     /**
      * @param args the command line arguments
